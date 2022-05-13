@@ -1,0 +1,10 @@
+.container{
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding: 10px 80px;
+}
+.view{
+  margin-right: 1rem;
+}
