@@ -1,0 +1,13 @@
+.navbar {
+  padding: 0 30px;
+}
+.brand{
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 3rem;
+}
+.image{
+  margin-right: .9rem;
+}

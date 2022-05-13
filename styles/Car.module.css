@@ -1,0 +1,26 @@
+.info{
+ /* height: 70px; */
+}
+
+.details {
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+}
+.title {
+  font-size: 1.7rem;
+  color: #111111;
+  font-weight: 300;
+}
+.description {
+  padding: 1.2rem;
+  width: 450px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+.getstarted{
+  text-align: center;
+}
+.button{
+  /* color: #ffffff; */
+}

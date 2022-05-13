@@ -1,0 +1,21 @@
+.advert{
+  text-align: center;
+  margin-top: 2rem;
+}
+.fields{
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 1rem; */
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.inputs{
+  margin-bottom: 1rem;
+  padding: .5rem;
+}
+.createbtn{
+  margin-top: 1rem;
+  padding: .6rem;
+}
