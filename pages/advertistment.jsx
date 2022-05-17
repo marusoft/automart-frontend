@@ -1,13 +1,41 @@
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Link from "next/link";
 import millify from "millify";
 import { Card, Button } from "react-bootstrap";
 import styles from "../styles/Advert.module.css";
 
-const Advertistment = ({ cars }) => {
+const Advertistment = () => {
+  const [vehicles, setVehicles] = useState([]);
+  console.log("vehicles", vehicles);
+
+  const getVehicle = async () => {
+    const { data } = await axios.get(
+      "https://automart-backend.herokuapp.com/api/car"
+    );
+    setVehicles(data.allCars);
+  };
+
+  const removeCar = async (_id) => {
+    try {
+      const { res } = await axios.delete(
+        `https://automart-backend.herokuapp.com/api/car/${_id}`
+      );
+      toast.success("Car post successfully deleted");
+      getVehicle();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getVehicle();
+  }, []);
+
   return (
     <div className={styles.container}>
-      {cars.map((car) => {
+      {vehicles.map((car) => {
         return (
           <Card style={{ width: "25rem" }} key={car._id}>
             <Card.Img variant="top" src={car.imgUrl} width={250} height={250} />
@@ -18,9 +46,13 @@ const Advertistment = ({ cars }) => {
             </Card.Body>
             <Card.Body>
               <Button variant="info" className={styles.view}>
-                <Link href={`advertistment/${car._id}`}>View Car</Link>
+                <Link href={`advertistment/${car._id}`} passHref>
+                  View Car
+                </Link>
               </Button>
-              <Button variant="danger">Delete Car</Button>
+              <Button onClick={() => removeCar(car._id)} variant="danger">
+                Delete Car
+              </Button>
             </Card.Body>
           </Card>
         );
@@ -31,14 +63,14 @@ const Advertistment = ({ cars }) => {
 
 export default Advertistment;
 
-export async function getStaticProps() {
-  const { data } = await axios.get(
-    "https://automart-backend.herokuapp.com/api/car"
-  );
-  // console.log(data);
-  return {
-    props: {
-      cars: data.allCars,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const { data } = await axios.get(
+//     "https://automart-backend.herokuapp.com/api/car"
+//   );
+//   // console.log(data);
+//   return {
+//     props: {
+//       cars: data.allCars,
+//     },
+//   };
+// }
