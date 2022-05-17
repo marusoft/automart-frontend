@@ -96,7 +96,6 @@ const PostCar = () => {
             !manufacturer ||
             !model ||
             !bodyType ||
-            !imgUrl ||
             loading
           }
           className={styles.createbtn}
