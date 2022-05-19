@@ -81,9 +81,10 @@ const PostCar = () => {
           onChange={(e) => setBodyType(e.target.value)}
         />
         <input
-          type="text"
+          type="file"
+          name="image"
           placeholder="Vehicle img url"
-          required
+          // required
           className={styles.inputs}
           value={imgUrl}
           onChange={(e) => setImgUrl(e.target.value)}
