@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/Car.module.css";
 import { Button } from "react-bootstrap";
+import Link from "next/link";
 
 const CarInfo = () => {
   return (
@@ -17,16 +18,9 @@ const CarInfo = () => {
         </div>
       </div>
       <div className={styles.getstarted}>
-        <a href="/postcar">
-          {" "}
-          <Button
-            variant="outline-secondary"
-            size="lg"
-            className={styles.button}
-          >
-            Get Started
-          </Button>
-        </a>
+        <Button variant="outline-secondary" size="lg" className={styles.button}>
+          <Link href="/postcar">Get Started</Link>
+        </Button>
       </div>
     </div>
   );

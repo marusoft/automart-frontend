@@ -8,14 +8,21 @@ import styles from "../styles/Advert.module.css";
 
 const Advertistment = () => {
   const [vehicles, setVehicles] = useState([]);
-  console.log("vehicles", vehicles);
 
   const getVehicle = async () => {
-    const { data } = await axios.get(
-      "https://automart-backend.herokuapp.com/api/car"
-    );
-    setVehicles(data.allCars);
+    try {
+      const { data } = await axios.get(
+        "https://automart-backend.herokuapp.com/api/car"
+      );
+      setVehicles(data.allCars);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    getVehicle();
+  }, []);
 
   const removeCar = async (_id) => {
     try {
@@ -28,10 +35,6 @@ const Advertistment = () => {
       console.error(error.message);
     }
   };
-
-  useEffect(() => {
-    getVehicle();
-  }, []);
 
   return (
     <div className={styles.container}>
