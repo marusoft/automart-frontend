@@ -8,9 +8,9 @@ const PostCar = () => {
   const [condition, setCondition] = useState("");
   const [amount, setAmount] = useState("");
   const [manufacturer, setManufacturer] = useState("");
-  const [model, setModel] = useState("");
-  const [bodyType, setBodyType] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [carmodel, setCarModel] = useState("");
+  const [bodytype, setBodyType] = useState("");
+  // const [imgUrl, setImgUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -18,14 +18,13 @@ const PostCar = () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        "https://automart-backend.herokuapp.com/api/car",
+        "https://automart-backend-v2.herokuapp.com/api/car",
         {
           condition,
           amount,
           manufacturer,
-          model,
-          bodyType,
-          imgUrl,
+          carmodel,
+          bodytype,
         }
       );
       toast.success("Car created successfully");
@@ -69,15 +68,15 @@ const PostCar = () => {
           placeholder="Vehicle Model"
           required
           className={styles.inputs}
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
+          value={carmodel}
+          onChange={(e) => setCarModel(e.target.value)}
         />
         <input
           type="text"
           placeholder="Vehicle Body Types e.g Var, car, jeep"
           required
           className={styles.inputs}
-          value={bodyType}
+          value={bodytype}
           onChange={(e) => setBodyType(e.target.value)}
         />
         <input
@@ -86,7 +85,6 @@ const PostCar = () => {
           placeholder="Vehicle img url"
           // required
           className={styles.inputs}
-          value={imgUrl}
           onChange={(e) => setImgUrl(e.target.value)}
         />
         <Button
@@ -95,8 +93,8 @@ const PostCar = () => {
             !condition ||
             !amount ||
             !manufacturer ||
-            !model ||
-            !bodyType ||
+            !carmodel ||
+            !bodytype ||
             loading
           }
           className={styles.createbtn}

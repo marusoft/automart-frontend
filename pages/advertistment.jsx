@@ -12,7 +12,7 @@ const Advertistment = () => {
   const getVehicle = async () => {
     try {
       const { data } = await axios.get(
-        "https://automart-backend.herokuapp.com/api/car"
+        "https://automart-backend-v2.herokuapp.com/api/car"
       );
       setVehicles(data.allCars);
     } catch (error) {
@@ -27,7 +27,7 @@ const Advertistment = () => {
   const removeCar = async (_id) => {
     try {
       const { res } = await axios.delete(
-        `https://automart-backend.herokuapp.com/api/car/${_id}`
+        `https://automart-backend-v2.herokuapp.com/api/car/${_id}`
       );
       toast.success("Car post successfully deleted");
       getVehicle();
@@ -41,7 +41,7 @@ const Advertistment = () => {
       {vehicles.map((car) => {
         return (
           <Card style={{ width: "25rem" }} key={car._id}>
-            <Card.Img variant="top" src={car.imgUrl} width={250} height={250} />
+            <Card.Img variant="top" src={car.imgurl} width={250} height={250} />
             <Card.Body>
               <Card.Title>{car.manufacturer}</Card.Title>
               <Card.Text>{millify(car.amount)}</Card.Text>
@@ -68,7 +68,7 @@ export default Advertistment;
 
 // export async function getStaticProps() {
 //   const { data } = await axios.get(
-//     "https://automart-backend.herokuapp.com/api/car"
+//     "https://automart-backend-v2.herokuapp.com/api/car/"
 //   );
 //   // console.log(data);
 //   return {

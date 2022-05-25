@@ -8,7 +8,7 @@ const Advert = ({ car }) => {
   return (
     <div className={styles.singlecar}>
       <Card style={{ width: "25rem" }} key={car._id}>
-        <Card.Img variant="top" src={car.imgUrl} />
+        <Card.Img variant="top" src={car.imgurl} />
         <Card.Body>
           <Card.Title>{car.manufacturer}</Card.Title>
           <Card.Text>{millify(car.amount)}</Card.Text>
@@ -33,9 +33,9 @@ export default Advert;
 
 export async function getStaticPaths() {
   const { data } = await axios.get(
-    "https://automart-backend.herokuapp.com/api/car"
+    "https://automart-backend-v2.herokuapp.com/api/car/"
   );
-
+  console.log("ALLCARS", data)
   const paths = data.allCars.map((advert) => {
     return {
       params: {
@@ -43,7 +43,6 @@ export async function getStaticPaths() {
       },
     };
   });
-
   return {
     paths,
     fallback: false,
@@ -53,8 +52,9 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
   const { data } = await axios.get(
-    `https://automart-backend.herokuapp.com/api/car/${params.advertId}`
+    `https://automart-backend-v2.herokuapp.com/api/car/${params.advertId}`
   );
+  console.log("specific car", data);
   return {
     props: {
       car: data.getASpecificCar,
