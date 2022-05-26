@@ -16,8 +16,8 @@ const Advert = ({ car }) => {
         <ListGroup className="list-group-flush">
           <ListGroupItem>Condition: {car.condition}</ListGroupItem>
           <ListGroupItem> Status: {car.status}</ListGroupItem>
-          <ListGroupItem> Model: {car.model}</ListGroupItem>
-          <ListGroupItem>Body Type: {car.bodyType}</ListGroupItem>
+          <ListGroupItem> Model: {car.carmodel}</ListGroupItem>
+          <ListGroupItem>Body Type: {car.bodytype}</ListGroupItem>
         </ListGroup>
         <Card.Body>
           <Button variant="info">

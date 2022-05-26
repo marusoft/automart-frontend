@@ -10,28 +10,30 @@ const PostCar = () => {
   const [manufacturer, setManufacturer] = useState("");
   const [carmodel, setCarModel] = useState("");
   const [bodytype, setBodyType] = useState("");
-  // const [imgUrl, setImgUrl] = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let formData = new FormData();
+      formData.append("image", image);
+      formData.append("condition", condition);
+      formData.append("amount", amount);
+      formData.append("manufacturer", manufacturer);
+      formData.append("carmodel", carmodel);
+      formData.append("bodytype", bodytype);
       setLoading(true);
       const { data } = await axios.post(
         "https://automart-backend-v2.herokuapp.com/api/car",
-        {
-          condition,
-          amount,
-          manufacturer,
-          carmodel,
-          bodytype,
-        }
+        formData
       );
+      console.log("DATA", data);
       toast.success("Car created successfully");
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data);
+      toast.error(error);
     }
   };
 
@@ -82,10 +84,9 @@ const PostCar = () => {
         <input
           type="file"
           name="image"
-          placeholder="Vehicle img url"
-          // required
+          accept="image/*"
           className={styles.inputs}
-          onChange={(e) => setImgUrl(e.target.value)}
+          onChange={(e) => setImage(e.target.files[0])}
         />
         <Button
           type="submit"
