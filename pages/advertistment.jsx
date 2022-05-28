@@ -7,19 +7,22 @@ import { Card, Button } from "react-bootstrap";
 import styles from "../styles/Advert.module.css";
 
 const Advertistment = () => {
+  const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
 
   const getVehicle = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         "https://automart-backend-v2.herokuapp.com/api/car"
       );
       setVehicles(data.allCars);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error(error);
     }
   };
-
   useEffect(() => {
     getVehicle();
   }, []);
@@ -35,6 +38,10 @@ const Advertistment = () => {
       console.error(error.message);
     }
   };
+
+  if (loading) {
+    return <div>Loading Car Advertistment...</div>;
+  }
 
   return (
     <div className={styles.container}>
