@@ -40,33 +40,50 @@ const Advertistment = () => {
   };
 
   if (loading) {
-    return <div>Loading Car Advertistment...</div>;
+    return (
+      <div className={styles.loadingadvert}>Loading Car Advertistment...</div>
+    );
   }
 
   return (
     <div className={styles.container}>
-      {vehicles.map((car) => {
-        return (
-          <Card style={{ width: "25rem" }} key={car._id}>
-            <Card.Img variant="top" src={car.imgurl} width={250} height={250} />
-            <Card.Body>
-              <Card.Title>{car.manufacturer}</Card.Title>
-              <Card.Text>{millify(car.amount)}</Card.Text>
-              <Card.Title>{car.bodyType}</Card.Title>
-            </Card.Body>
-            <Card.Body>
-              <Button variant="info" className={styles.view}>
-                <Link href={`advertistment/${car._id}`} passHref>
-                  View Car
-                </Link>
-              </Button>
-              <Button onClick={() => removeCar(car._id)} variant="danger">
-                Delete Car
-              </Button>
-            </Card.Body>
-          </Card>
-        );
-      })}
+      {vehicles.length === 0 ? (
+        <div style={{
+          textAlign: "center",
+          margin: "0 auto",
+          padding: "2rem",
+          height: "270px",
+          fontSize: "1.5rem",
+        }}>Car advertistment not available</div>
+      ) : (
+        vehicles.map((car) => {
+          return (
+            <Card style={{ width: "25rem" }} key={car._id}>
+              <Card.Img
+                variant="top"
+                src={car.imgurl}
+                width={250}
+                height={250}
+              />
+              <Card.Body>
+                <Card.Title>{car.manufacturer}</Card.Title>
+                <Card.Text>{millify(car.amount)}</Card.Text>
+                <Card.Title>{car.bodyType}</Card.Title>
+              </Card.Body>
+              <Card.Body>
+                <Button variant="info" className={styles.view}>
+                  <Link href={`advertistment/${car._id}`} passHref>
+                    View Car
+                  </Link>
+                </Button>
+                <Button onClick={() => removeCar(car._id)} variant="danger">
+                  Delete Car
+                </Button>
+              </Card.Body>
+            </Card>
+          );
+        })
+      )}
     </div>
   );
 };
